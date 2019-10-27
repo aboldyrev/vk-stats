@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "332495f9ccc8ec70bec61a5dd07a3fec",
+    "content-hash": "854885da13324bd1ee03191de7cece2b",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -305,6 +305,60 @@
                 "schedule"
             ],
             "time": "2019-03-31T00:38:28+00:00"
+        },
+        {
+            "name": "dusterio/lumen-passport",
+            "version": "0.2.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dusterio/lumen-passport.git",
+                "reference": "d9be9954589da2a152e5a2420d0b42b1ad0524dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dusterio/lumen-passport/zipball/d9be9954589da2a152e5a2420d0b42b1ad0524dd",
+                "reference": "d9be9954589da2a152e5a2420d0b42b1ad0524dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.3|~5.4|~5.5|~5.6|~6.0",
+                "illuminate/support": "~5.3|~5.4|~5.5|~5.6|~6.0",
+                "laravel/passport": ">=0.2.2",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "fzaninotto/faker": "~1.4",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dusterio\\LumenPassport\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Mysenko",
+                    "email": "denis@mysenko.com",
+                    "homepage": "https://www.mysenko.com"
+                }
+            ],
+            "description": "Making Laravel Passport work with Lumen",
+            "homepage": "https://github.com/dusterio/lumen-passport",
+            "keywords": [
+                "laravel passport",
+                "lumen",
+                "php"
+            ],
+            "time": "2019-10-02T07:53:11+00:00"
         },
         {
             "name": "egulias/email-validator",

@@ -1,5 +1,14 @@
 {
-    "require": {
-        "laravel/passport": "^7.5"
-    }
+	"require": {
+		"dusterio/lumen-passport": "^0.2.15"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		},
+		"classmap": [
+			"database/seeds",
+			"database/factories"
+		]
+	}
 }
