@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Spatie\Permission\Models\Permission;
@@ -25,7 +26,12 @@ class AuthServiceProvider extends ServiceProvider
 	 * @return void
 	 */
 	public function boot() {
-		Passport::tokensCan(Permission::pluck('id', 'name')->toArray());
+		if(
+			$this->app->environment() == 'testing' && Schema::hasTable('permissions') ||
+			$this->app->environment() != 'testing'
+		) {
+			Passport::tokensCan(Permission::pluck('id', 'name')->toArray());
+		}
 
 		$this->app[ 'auth' ]->viaRequest('api', function($request) {
 			if ($request->input('api_token')) {

@@ -17,11 +17,11 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">app/Http/Controllers</directory>
-            <directory suffix=".php">app/Http/Middleware</directory>
             <directory suffix=".php">app/Models</directory>
             <exclude>
+                <directory suffix=".php">app/Http/Middleware</directory>
                 <file>app/Http/Controllers/Controller.php</file>
-                <file>app/Http/Middleware/Authenticate.php</file>
+                <!--<file>app/Http/Middleware/Authenticate.php</file>-->
             </exclude>
         </whitelist>
     </filter>
@@ -33,6 +33,9 @@
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>
