@@ -19,8 +19,10 @@
             <directory suffix=".php">app/Http/Controllers</directory>
             <directory suffix=".php">app/Http/Middleware</directory>
             <directory suffix=".php">app/Models</directory>
-            <!--<exclude>-->
-            <!--</exclude>-->
+            <exclude>
+                <file>app/Http/Controllers/Controller.php</file>
+                <file>app/Http/Middleware/Authenticate.php</file>
+            </exclude>
         </whitelist>
     </filter>
     <logging>
