@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Auth\Authorizable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-	use HasApiTokens, Authenticatable, Authorizable;
+	use HasApiTokens, Authenticatable, Authorizable, HasRoles;
 
 	/**
 	 * The attributes that are mass assignable.
