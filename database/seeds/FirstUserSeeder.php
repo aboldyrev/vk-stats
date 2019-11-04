@@ -14,9 +14,10 @@ class FirstUserSeeder extends Seeder
 		User::truncate();
 
 		User::create([
-			'name'     => 'admin',
-			'email'    => 'test@mail.loc',
-			'password' => 000000,
+			'name'      => 'admin',
+			'email'     => 'test@mail.loc',
+			'password'  => '000000',
+			'is_active' => 1
 		]);
 	}
 }
