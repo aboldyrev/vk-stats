@@ -111,9 +111,8 @@ $app->router->group([
 
 
 $app->router->group([
-	'namespace'  => 'App\Http\Controllers\Api',
-	'middleware' => 'auth:api',
-	'prefix'     => 'v1/api'
+	'namespace' => 'App\Http\Controllers\Api',
+	'prefix'    => 'api'
 ], function($router) {
 	require __DIR__ . '/../routes/api.php';
 });
