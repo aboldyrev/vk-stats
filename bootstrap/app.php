@@ -111,8 +111,12 @@ $app->router->group([
 
 
 $app->router->group([
-	'namespace' => 'App\Http\Controllers\Api',
-	'prefix'    => 'api'
+	'namespace'  => 'App\Http\Controllers\Api',
+	'prefix'     => 'api',
+	'middleware' => [
+		\App\Http\Middleware\Headers::class,
+		\App\Http\Middleware\ReplaceStatusResponse::class,
+	],
 ], function($router) {
 	require __DIR__ . '/../routes/api.php';
 });
