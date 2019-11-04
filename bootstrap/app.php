@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-(new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
-    dirname(__DIR__)
-))->bootstrap();
+( new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
+	dirname(__DIR__)
+) )->bootstrap();
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +18,21 @@ require_once __DIR__.'/../vendor/autoload.php';
 */
 
 $app = new Laravel\Lumen\Application(
-    dirname(__DIR__)
+	dirname(__DIR__)
 );
 
 $app->withFacades();
+
+
+$app->withAliases();
+$app->alias('cache', \Illuminate\Cache\CacheManager::class);
+
 
 $app->withEloquent();
 
 
 $app->configure('auth');
+$app->configure('permission');
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -39,13 +45,13 @@ $app->configure('auth');
 */
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+	Illuminate\Contracts\Debug\ExceptionHandler::class,
+	App\Exceptions\Handler::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+	Illuminate\Contracts\Console\Kernel::class,
+	App\Console\Kernel::class
 );
 
 /*
@@ -64,7 +70,9 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
- 'auth' => App\Http\Middleware\Authenticate::class,
+	'auth'       => App\Http\Middleware\Authenticate::class,
+	'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
+	'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
 ]);
 
 /*
@@ -78,11 +86,12 @@ $app->routeMiddleware([
 |
 */
 
- $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+$app->register(Spatie\Permission\PermissionServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -102,8 +111,9 @@ $app->router->group([
 
 
 $app->router->group([
-	'namespace' => 'App\Http\Controllers\Api',
-	'prefix'    => 'api'
+	'namespace'  => 'App\Http\Controllers\Api',
+	'middleware' => 'auth:api',
+	'prefix'     => 'v1/api'
 ], function($router) {
 	require __DIR__ . '/../routes/api.php';
 });
