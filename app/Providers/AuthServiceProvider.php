@@ -26,10 +26,7 @@ class AuthServiceProvider extends ServiceProvider
 	 * @return void
 	 */
 	public function boot() {
-		if(
-			$this->app->environment() == 'testing' && Schema::hasTable('permissions') ||
-			$this->app->environment() != 'testing'
-		) {
+		if(Schema::hasTable('permissions')) {
 			Passport::tokensCan(Permission::pluck('id', 'name')->toArray());
 		}
 
