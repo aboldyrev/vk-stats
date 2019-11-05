@@ -10,6 +10,4 @@ $router->group([
 	'middleware' => 'auth:api',
 ], function() use ($router) {
 
-	$router->get('/', 'RootController@index');
-
 });
