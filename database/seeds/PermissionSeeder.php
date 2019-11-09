@@ -10,12 +10,10 @@ class PermissionSeeder extends \Illuminate\Database\Seeder
 		}
 
 		/** Все доступные возможности */
-		$permissions = [
-			'admin' => 'Администратор',
-		];
+		$permissions = [ 'edit', 'view' ];
 
 		/** Добавление возможностей */
-		foreach ($permissions as $permission => $description) {
+		foreach ($permissions as $permission) {
 			Permission::create([
 				'name'        => $permission,
 				'guard_name'  => 'api'
