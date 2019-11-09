@@ -10,8 +10,14 @@
          stopOnFailure="false"
          printerClass="Sempro\PHPUnitPrettyPrinter\PrettyPrinter">
     <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Model tests">
+            <directory suffix="Test.php">./tests/Models</directory>
+        </testsuite>
+        <testsuite name="Api tests">
+            <directory suffix="Test.php">./tests/Api</directory>
+        </testsuite>
+        <testsuite name="Other tests">
+            <directory suffix="Test.php">./tests/Other</directory>
         </testsuite>
     </testsuites>
     <filter>

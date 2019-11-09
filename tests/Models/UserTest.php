@@ -8,7 +8,7 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
  * Class UserModelTest
  * @see
  */
-class UserModelTest extends TestCase
+class UserTest extends TestCase
 {
 	use DatabaseMigrations;
 
