@@ -61,15 +61,24 @@ class ReplaceStatusResponse
 			}
 
 		}
-
 		$content = json_decode($response->getContent());
-		if (is_null($content) || !is_object($content)) {
-			$content = isset($errors) && $is_debug ? compact('status', 'errors') : compact('status');
-		} else {
-			$content->status = $status;
-			if (isset($errors) && $is_debug) {
-				$content->errors = $errors;
-			}
+		if (is_null($content)) {
+			$content = [];
+		}
+
+		if (is_string($content)) {
+			$content = [ 'content' => $content ];
+		} elseif (is_object($content)) {
+			$content = (array)$content;
+		}
+
+		if (is_array($content)) {
+			$content = collect($content);
+		}
+
+		$content->put('response_status', $status);
+		if (isset($errors) && $is_debug) {
+			$content->put('errors', $errors);
 		}
 
 		$content = json_encode($content, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
@@ -79,7 +88,6 @@ class ReplaceStatusResponse
 		// Выполнение действия
 		return $response;
 	}
-
 
 
 	protected function prepareTrace($trace) {

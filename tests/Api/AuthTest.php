@@ -21,6 +21,6 @@ class AuthTest extends TestCase
 
 		$this->assertObjectHasAttribute('errors', $content);
 
-		$this->assertEquals(401, $content->status->code);
+		$this->assertEquals(401, $content->response_status->code);
 	}
 }
