@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Artisan;
 use Laravel\Passport\Passport;
 use Spatie\Permission\Models\Permission;
 
+/**
+ * Class TestCase
+ */
 abstract class TestCase extends Laravel\Lumen\Testing\TestCase
 {
 	/**
