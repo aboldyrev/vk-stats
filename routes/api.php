@@ -11,3 +11,7 @@ $router->group([
 ], function() use ($router) {
 
 });
+
+$router->get('{query:[A-Za-z\/\-]*}', function() {
+	abort(404);
+});
