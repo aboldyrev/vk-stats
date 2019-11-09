@@ -1,7 +1,8 @@
 {
 	"require": {
 		"dusterio/lumen-passport": "^0.2.15",
-		"spatie/laravel-permission": "^2.38"
+		"spatie/laravel-permission": "^2.38",
+		"vkcom/vk-php-sdk": "^5.101"
 	},
 	"autoload": {
 		"psr-4": {
