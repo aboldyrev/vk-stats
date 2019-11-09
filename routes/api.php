@@ -8,7 +8,16 @@ $router->get('login', 'AuthController@login');
 
 $router->group([
 	'middleware' => 'auth:api',
-], function() use ($router) {
+], function(\Laravel\Lumen\Routing\Router $router) {
+
+	$router->group([
+		'prefix'    => 'vk',
+		'namespace' => 'Vk'
+	], function(\Laravel\Lumen\Routing\Router $router) {
+
+		$router->get('search', 'UserController@search');
+
+	});
 
 });
 
