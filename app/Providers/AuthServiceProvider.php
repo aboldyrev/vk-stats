@@ -2,38 +2,29 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Passport;
-use Spatie\Permission\Models\Permission;
 
 class AuthServiceProvider extends ServiceProvider
 {
-	/**
-	 * Register any application services.
-	 *
-	 * @return void
-	 */
-	public function register() {
-		//
-	}
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        // 'App\Model' => 'App\Policies\ModelPolicy',
+    ];
 
-	/**
-	 * Boot the authentication services for the application.
-	 *
-	 * @return void
-	 */
-	public function boot() {
-		if(Schema::hasTable('permissions')) {
-			Passport::tokensCan(Permission::pluck('id', 'name')->toArray());
-		}
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
 
-		$this->app[ 'auth' ]->viaRequest('api', function($request) {
-			if ($request->input('api_token')) {
-				return User::where('api_token', $request->input('api_token'))->first();
-			}
-		});
-	}
+        //
+    }
 }

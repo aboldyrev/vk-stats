@@ -1,26 +1,19 @@
 <?php
 
-/**
- * @var \Laravel\Lumen\Routing\Router $router
- * */
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-$router->get('login', 'AuthController@login');
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
 
-$router->group([
-	'middleware' => 'auth:api',
-], function(\Laravel\Lumen\Routing\Router $router) {
-
-	$router->group([
-		'prefix'    => 'vk',
-		'namespace' => 'Vk'
-	], function(\Laravel\Lumen\Routing\Router $router) {
-
-		$router->get('search', 'UserController@search');
-
-	});
-
-});
-
-$router->get('{query:[A-Za-z\/\-]*}', function() {
-	abort(404);
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
